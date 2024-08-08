@@ -1,4 +1,4 @@
-let quiz = { scoreA: 0, scoreB: 0, timer: 0 };
+let quiz = { scoreA: 0, scoreB: 0, timer: 0, previousWinner: null };
 
 export async function GET() {
     return new Response(JSON.stringify(quiz), {
@@ -24,6 +24,9 @@ export async function POST(req: Request) {
                 clearInterval(timerInterval);
             }
         }, 1000);
+    }
+    if (body.previousWinner !== undefined) {
+        quiz.previousWinner = body.previousWinner;
     }
     return new Response(JSON.stringify(quiz), {
         status: 200,

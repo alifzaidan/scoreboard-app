@@ -6,9 +6,8 @@ import useSWR from 'swr';
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 export default function Player() {
-    const { data, error } = useSWR('http://localhost:3000/api/score', fetcher, { refreshInterval: 1000 });
-
     const [timer, setTimer] = useState(0);
+    const { data, error } = useSWR('http://localhost:3000/api/quiz', fetcher, { refreshInterval: 1000 });
 
     useEffect(() => {
         if (data?.timer > 0) {
@@ -29,6 +28,7 @@ export default function Player() {
             <h1>Tim A: {data.scoreA}</h1>
             <h1>Tim B: {data.scoreB}</h1>
             <h2>Timer: {timer > 0 ? timer : "Time's up!"}</h2>
+            {data.previousWinner && <h2>Pemenang: {data.previousWinner}</h2>}
         </div>
     );
 }

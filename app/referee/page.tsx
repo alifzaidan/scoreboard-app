@@ -10,7 +10,7 @@ export default function Referee() {
     const [previousScoreA, setPreviousScoreA] = useState(0);
     const [scoreB, setScoreB] = useState(0);
     const [previousScoreB, setPreviousScoreB] = useState(0);
-    const { data, error } = useSWR('http://localhost:3000/api/score', fetcher);
+    const { data, error } = useSWR('http://localhost:3000/api/quiz', fetcher);
 
     useEffect(() => {
         if (data) {
@@ -25,7 +25,7 @@ export default function Referee() {
     const updateScoreA = async (newScore: any) => {
         setPreviousScoreA(scoreA);
         setScoreA(newScore);
-        await fetch('/api/score', {
+        await fetch('/api/quiz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export default function Referee() {
 
     const undoScoreA = async () => {
         setScoreA(previousScoreA);
-        await fetch('/api/score', {
+        await fetch('/api/quiz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export default function Referee() {
     const updateScoreB = (newScore: number) => {
         setPreviousScoreB(scoreB);
         setScoreB(newScore);
-        fetch('/api/score', {
+        fetch('/api/quiz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export default function Referee() {
 
     const undoScoreB = () => {
         setScoreB(previousScoreB);
-        fetch('/api/score', {
+        fetch('/api/quiz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -68,22 +68,43 @@ export default function Referee() {
         });
     };
 
-    const resetAllScores = () => {
+    const resetAll = () => {
         setPreviousScoreA(scoreA);
         setPreviousScoreB(scoreB);
         setScoreA(0);
         setScoreB(0);
-        fetch('/api/score', {
+        fetch('/api/quiz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ scoreA: 0, scoreB: 0 }),
+            body: JSON.stringify({ scoreA: 0, scoreB: 0, timer: 0, previousWinner: null }),
+        });
+    };
+
+    const finishGame = () => {
+        let winner = 'Draw';
+        if (scoreA > scoreB) {
+            winner = 'Tim A';
+        } else if (scoreB > scoreA) {
+            winner = 'Tim B';
+        }
+
+        setPreviousScoreA(scoreA);
+        setPreviousScoreB(scoreB);
+        setScoreA(0);
+        setScoreB(0);
+        fetch('/api/quiz', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ scoreA: 0, scoreB: 0, previousWinner: winner }),
         });
     };
 
     const startTimer = () => {
-        fetch('/api/score', {
+        fetch('/api/quiz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -114,7 +135,9 @@ export default function Referee() {
             <br />
             <button onClick={startTimer}>Start Timer</button>
             <br />
-            <button onClick={resetAllScores}>New Game</button>
+            <button onClick={resetAll}>Reset</button>
+            <br />
+            <button onClick={finishGame}>Finish Game</button>
         </div>
     );
 }
