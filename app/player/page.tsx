@@ -24,11 +24,42 @@ export default function Player() {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <div>
-            <h1>Tim A: {data.scoreA}</h1>
-            <h1>Tim B: {data.scoreB}</h1>
-            <h2>Timer: {timer > 0 ? timer : "Time's up!"}</h2>
-            {data.previousWinner && <h2>Pemenang: {data.previousWinner}</h2>}
+        <main className="flex flex-col items-center h-screen py-[36px] overflow-hidden bg-white">
+        <nav className="w-[1080px] h-[101px] mb-8 rounded-2xl bg-white shadow-lg flex items-center justify-between px-8">
+            <div className="flex items-center space-x-4">
+                <img src="/assets/icons/logo-bri.png" alt="Logo" className="h-12 w-26" />
+            </div>
+            <div className="text-3xl font-bold text-blue-800 absolute left-1/2 transform -translate-x-1/2">
+                QUIZ bank BRI
+            </div>
+            <div className="text-3xl font-bold text-blue-800">
+                Timer: {timer > 0 ? timer : "Time's up!"}
+            </div>
+        </nav>
+        <div className="flex space-x-8">
+            <div className="flex-1">
+                <div className="block h-[470px] w-[520px] shadow-lg p-8 text-center bg-slate-200 rounded-2xl border-4 border-blue-800">
+                    <div className="text-3xl font-bold text-black mb-4">Team A</div>
+                    <div className="border-2 h-[350px] bg-white p-4 rounded-lg flex flex-col items-center justify-between">
+                        <div className="text-xl font-bold text-black mb-2">Score Sementara:</div>
+                        <div className="flex-grow flex items-center justify-center">
+                            <div className="text-7xl font-bold text-black">{data.scoreA}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="flex-1">
+                <div className="block h-[470px] w-[520px] shadow-lg p-8 text-center bg-slate-200 rounded-2xl border-4 border-orange-500">
+                    <div className="text-3xl font-bold text-black mb-4">Team B</div>
+                    <div className="border-2 h-[350px] bg-white p-4 rounded-lg flex flex-col items-center justify-between">
+                        <div className="text-xl font-bold text-black mb-2">Score Sementara:</div>
+                        <div className="flex-grow flex items-center justify-center">
+                            <div className="text-7xl font-bold text-black">{data.scoreB}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </main>
     );
 }
