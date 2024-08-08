@@ -7,7 +7,7 @@ const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 export default function Player() {
     const [timer, setTimer] = useState(0);
-    const { data, error } = useSWR('http://localhost:3000/api/quiz', fetcher, { refreshInterval: 1000 });
+    const { data, error } = useSWR('/api/quiz', fetcher, { refreshInterval: 1000 });
 
     useEffect(() => {
         if (data?.timer > 0) {

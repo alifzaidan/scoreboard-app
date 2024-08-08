@@ -10,7 +10,7 @@ export default function Referee() {
     const [previousScoreA, setPreviousScoreA] = useState(0);
     const [scoreB, setScoreB] = useState(0);
     const [previousScoreB, setPreviousScoreB] = useState(0);
-    const { data, error } = useSWR('http://localhost:3000/api/quiz', fetcher);
+    const { data, error } = useSWR('/api/quiz', fetcher);
 
     useEffect(() => {
         if (data) {
