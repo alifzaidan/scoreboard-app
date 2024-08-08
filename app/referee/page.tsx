@@ -82,6 +82,16 @@ export default function Referee() {
         });
     };
 
+    const startTimer = () => {
+        fetch('/api/score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ timer: 10 }),
+        });
+    };
+
     return (
         <div>
             <h1>Player 1: {scoreA}</h1>
@@ -101,6 +111,8 @@ export default function Referee() {
             <button onClick={undoScoreB}>Undo</button>
             <br />
             <br />
+            <br />
+            <button onClick={startTimer}>Start Timer</button>
             <br />
             <button onClick={resetAllScores}>New Game</button>
         </div>

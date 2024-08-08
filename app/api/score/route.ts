@@ -1,7 +1,4 @@
-// app/api/score/route.ts
-
-// Menyimpan skor dalam memori
-let quiz = { scoreA: 0, scoreB: 0 };
+let quiz = { scoreA: 0, scoreB: 0, timer: 0 };
 
 export async function GET() {
     return new Response(JSON.stringify(quiz), {
@@ -17,6 +14,16 @@ export async function POST(req: Request) {
     }
     if (body.scoreB !== undefined) {
         quiz.scoreB = body.scoreB;
+    }
+    if (body.timer !== undefined) {
+        quiz.timer = body.timer;
+        const timerInterval = setInterval(() => {
+            if (quiz.timer > 0) {
+                quiz.timer -= 1;
+            } else {
+                clearInterval(timerInterval);
+            }
+        }, 1000);
     }
     return new Response(JSON.stringify(quiz), {
         status: 200,
