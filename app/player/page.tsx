@@ -26,34 +26,41 @@ export default function Player() {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <main className="flex flex-col items-center h-full py-[36px] overflow-hidden">
-            <nav className="w-[1080px] h-[101px] mb-8 rounded-2xl bg-white shadow-lg flex items-center justify-between px-8">
-                <div className="w-28">
-                    <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
+        <main className="flex flex-col space-y-8 container items-center lg:h-screen py-10 overflow-hidden">
+            <nav className="w-full p-4 rounded-2xl bg-slate-200 shadow-lg flex gap-4 items-center justify-center">
+                <div className="bg-quaternary w-1/2 h-full py-4 rounded-full">
+                    <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team A</h2>
                 </div>
-                <div className="text-3xl font-bold text-blue-800 absolute left-1/2 transform -translate-x-1/2">QUIZ bank BRI</div>
-                <div className="text-3xl font-bold text-blue-800">Timer: {timer > 0 ? timer : "Time's up!"}</div>
+                <div className="bg-secondary w-full h-full py-4 rounded-full">
+                    <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team B</h2>
+                </div>
             </nav>
-            <div className="flex space-x-8">
-                <div className="flex-1">
-                    <div className="block h-[470px] w-[520px] shadow-lg p-8 text-center bg-slate-200 rounded-2xl border-4 border-blue-800">
-                        <div className="text-3xl font-bold text-black mb-4">Team A</div>
-                        <div className="border-2 h-[350px] bg-white p-4 rounded-lg flex flex-col items-center justify-between">
-                            <div className="text-xl font-bold text-black mb-2">Score Sementara:</div>
-                            <div className="flex-grow flex items-center justify-center">
-                                <div className="text-7xl font-bold text-black">{data.scoreA}</div>
+            <div className="grid w-full lg:grid-cols-2 grid-cols-1 gap-8 h-full">
+                <div className="w-full bg-quaternary shadow-lg sm:p-8 p-4 rounded-2xl">
+                    <div className="h-full sm:p-8 p-4 text-center bg-slate-200 rounded-2xl">
+                        <div className="flex justify-between items-center border-b border-primary pb-4">
+                            <div className="text-start">
+                                <h1 className="text-3xl font-bold text-primary">Team A</h1>
+                                <h4 className="text-lg font-medium text-primary">2 Player</h4>
                             </div>
+                            <h2 className="text-primary">icons</h2>
+                        </div>
+                        <div className="flex flex-col items-center justify-center h-full">
+                            <h2 className="text-9xl font-bold text-primary"style={{ marginTop: '-72px' }}>{data.scoreA}</h2>
                         </div>
                     </div>
                 </div>
-                <div className="flex-1">
-                    <div className="block h-[470px] w-[520px] shadow-lg p-8 text-center bg-slate-200 rounded-2xl border-4 border-orange-500">
-                        <div className="text-3xl font-bold text-black mb-4">Team B</div>
-                        <div className="border-2 h-[350px] bg-white p-4 rounded-lg flex flex-col items-center justify-between">
-                            <div className="text-xl font-bold text-black mb-2">Score Sementara:</div>
-                            <div className="flex-grow flex items-center justify-center">
-                                <div className="text-7xl font-bold text-black">{data.scoreB}</div>
+                <div className="w-full bg-secondary shadow-lg sm:p-8 p-4 rounded-2xl">
+                    <div className="h-full sm:p-8 p-4 text-center bg-slate-200 rounded-2xl">
+                        <div className="flex justify-between items-center border-b border-primary pb-4">
+                            <div className="text-start">
+                                <h1 className="text-3xl font-bold text-primary">Team B</h1>
+                                <h4 className="text-lg font-medium text-primary">2 Player</h4>
                             </div>
+                            <h2 className="text-primary">icons</h2>
+                        </div>
+                        <div className="flex flex-col items-center justify-center h-full">
+                            <h2 className="text-9xl font-bold text-primary"style={{ marginTop: '-72px' }}>{data.scoreB}</h2>
                         </div>
                     </div>
                 </div>
