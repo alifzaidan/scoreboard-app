@@ -1,5 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { MdOutlineScreenshotMonitor } from 'react-icons/md';
+import { RiUserSettingsLine } from 'react-icons/ri';
 
 export default function Home() {
     return (
@@ -15,14 +17,12 @@ export default function Home() {
                     <div className="text-4xl text-white font-bold mb-4">Player</div>
 
                     <div className="h-32 w-32 m-auto my-8 bg-white rounded-full flex items-center justify-center">
-                        <div className="w-16">
-                            <Image src="/assets/icons/desktop.svg" alt="Icon Player" width={200} height={200} />
-                        </div>
+                        <MdOutlineScreenshotMonitor className="h-16 w-16 text-primary" />
                     </div>
 
                     <div className="text-lg mx-20 text-white">Halaman ini adalah halaman untuk menampilkan score peserta</div>
-                    <div className="absolute bottom-4 right-4">
-                        <Image src="/assets/icons/arrow-right.svg" alt="Arrow Right" className="h-6 w-6" width={200} height={200} />
+                    <div className="absolute bottom-4 right-6 text-white">
+                        <FaArrowRightLong className="h-8 w-8" />
                     </div>
                 </Link>
                 <Link
@@ -33,13 +33,13 @@ export default function Home() {
 
                     <div className="h-32 w-32 m-auto my-8 bg-white rounded-full flex items-center justify-center">
                         <div className="w-16">
-                            <Image src="/assets/icons/user orange.svg" alt="Icon Referee" width={200} height={200} />
+                            <RiUserSettingsLine className="h-16 w-16 text-tertiary" />
                         </div>
                     </div>
 
                     <div className="text-lg mx-20 text-white">Halaman ini adalah halaman untuk Juri menambah dan mengurangi score peserta</div>
-                    <div className="absolute bottom-4 right-4">
-                        <Image src="/assets/icons/arrow-right.svg" alt="Arrow Right" className="h-6 w-6" width={200} height={200} />
+                    <div className="absolute bottom-4 right-6 text-white">
+                        <FaArrowRightLong className="h-8 w-8" />
                     </div>
                 </Link>
             </div>

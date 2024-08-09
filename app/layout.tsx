@@ -20,7 +20,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <div className={`${poppins.className} bg-pattern h-screen`}>{children}</div>
+                <div className={`${poppins.className} bg-pattern h-full`}>{children}</div>
             </body>
         </html>
     );

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { FaUndo } from 'react-icons/fa';
 import useSWR from 'swr';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
@@ -115,77 +116,101 @@ export default function Referee() {
     };
 
     return (
-        <main className="flex flex-col items-center h-screen py-4 overflow-hidden">
-            <nav className="w-[1080px] h-[101px] mb-4 rounded-2xl bg-white shadow-lg flex items-center justify-between px-8">
-                <div className="w-28">
-                    <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
+        <main className="flex flex-col space-y-8 container items-center lg:h-screen py-10 overflow-hidden">
+            <nav className="w-full p-4 rounded-2xl bg-slate-200 shadow-lg flex gap-4 items-center justify-center">
+                <div className="bg-quaternary w-1/2 h-full py-4 rounded-full">
+                    <h2 className="md:text-2xl text-xl text-primary font-bold text-center">Team A</h2>
                 </div>
-                <h1 className="text-3xl font-bold text-blue-800">QUIZ bank BRI</h1>
+                <div className="bg-secondary w-full h-full py-4 rounded-full">
+                    <h2 className="md:text-2xl text-xl text-primary font-bold text-center">Team B</h2>
+                </div>
             </nav>
-            <div className="flex space-x-4 mb-4">
+            <div className="grid w-full lg:grid-cols-2 grid-cols-1 gap-8 h-full">
+                <div className="w-full bg-quaternary shadow-lg p-8 rounded-2xl">
+                    <div className="h-full p-8 text-center bg-slate-200 rounded-2xl">
+                        <div className="flex justify-between items-center border-b border-primary pb-4">
+                            <div className="text-start">
+                                <h1 className="text-3xl font-bold text-primary">Team A</h1>
+                                <h4 className="text-lg font-medium text-primary">2 Player</h4>
+                            </div>
+                            <h2 className="text-4xl font-bold text-primary">{scoreA}</h2>
+                        </div>
+                        <div className="flex justify-between gap-3 mt-12">
+                            <button
+                                onClick={undoScoreA}
+                                className="basis-1/5 w-full text-center text-white bg-gray-400 hover:bg-gray-500 py-4 rounded-lg"
+                            >
+                                <FaUndo className="m-auto" />
+                            </button>
+                            <button
+                                onClick={() => updateScoreA(scoreA - 50)}
+                                className="basis-1/2 w-full text-white md:text-xl font-semibold bg-red-500 hover:bg-red-600 py-4 rounded-lg"
+                            >
+                                Salah
+                            </button>
+                            <button
+                                onClick={() => updateScoreA(scoreA + 100)}
+                                className="basis-1/2 w-full text-white md:text-xl font-semibold bg-green-500 hover:bg-green-600 py-4 rounded-lg"
+                            >
+                                Benar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="w-full bg-secondary shadow-lg p-8 rounded-2xl">
+                    <div className="h-full p-8 text-center bg-slate-200 rounded-2xl">
+                        <div className="flex justify-between items-center border-b border-primary pb-4">
+                            <div className="text-start">
+                                <h1 className="text-3xl font-bold text-primary">Team B</h1>
+                                <h4 className="text-lg font-medium text-primary">2 Player</h4>
+                            </div>
+                            <h2 className="text-4xl font-bold text-primary">{scoreB}</h2>
+                        </div>
+                        <div className="flex justify-between gap-3 mt-12">
+                            <button
+                                onClick={undoScoreB}
+                                className="basis-1/5 w-full text-white bg-gray-400 hover:bg-gray-500 transition duration-200 py-4 rounded-lg"
+                            >
+                                <FaUndo className="m-auto" />
+                            </button>
+                            <button
+                                onClick={() => updateScoreB(scoreB - 50)}
+                                className="basis-1/2 w-full text-white md:text-xl font-semibold bg-red-500 hover:bg-red-600 transition duration-200 py-4 rounded-lg"
+                            >
+                                Salah
+                            </button>
+                            <button
+                                onClick={() => updateScoreB(scoreB + 100)}
+                                className="basis-1/2 w-full text-white md:text-xl font-semibold bg-green-500 hover:bg-green-600 transition duration-200 py-4 rounded-lg"
+                            >
+                                Benar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer className="w-full p-4 mb-8 rounded-2xl bg-slate-200 shadow-lg flex gap-4 items-center justify-center">
                 <button
                     onClick={resetAll}
-                    className="w-[150px] h-[80px] flex justify-center items-center bg-yellow-500 rounded-lg hover:bg-yellow-600"
+                    className="w-full py-4 flex justify-center items-center bg-tertiary rounded-xl hover:scale-105 transition duration-200"
                 >
-                    <span className="text-center font-semibold">Reset</span>
+                    <span className="text-white md:text-xl text-center font-semibold">Reset</span>
                 </button>
-                <button onClick={startTimer} className="w-[150px] h-[80px] flex justify-center items-center bg-blue-500 rounded-lg hover:bg-blue-600">
-                    <span className="text-center font-semibold">Start Timer</span>
+                <button
+                    onClick={startTimer}
+                    className="w-full py-4 flex justify-center items-center bg-primary rounded-xl  hover:scale-105 transition duration-200"
+                >
+                    <span className="text-white md:text-xl text-center font-semibold">Start Timer</span>
                 </button>
-                <button onClick={finishGame} className="w-[150px] h-[80px] flex justify-center items-center bg-red-500 rounded-lg hover:bg-red-600">
-                    <span className="text-center font-semibold">Finish Game</span>
+                <button
+                    onClick={finishGame}
+                    className="w-full py-4 flex justify-center items-center bg-green-500 rounded-xl hover:scale-105 transition duration-200"
+                >
+                    <span className="text-white md:text-xl text-center font-semibold">Finish Game</span>
                 </button>
-            </div>
-            <div className="flex space-x-8">
-                <div className="flex-1">
-                    <div className="block h-[400px] w-[520px] shadow-lg p-8 text-center bg-slate-200 rounded-2xl border-4 border-blue-800">
-                        <div className="text-3xl font-bold text-blue-800 mb-4">Team A</div>
-                        <div className="border-2 h-[230px] bg-white p-4 rounded-lg flex flex-col items-center justify-between">
-                            <div className="text-xl font-bold text-blue-800 mb-2">Score Sementara:</div>
-                            <div className="flex-grow flex items-center justify-center">
-                                <div className="text-7xl font-bold text-blue-800">{scoreA}</div>
-                            </div>
-                        </div>
-                        <div className="flex justify-between mt-4">
-                            <button onClick={undoScoreA} className="bg-gray-400 hover:bg-gray-500 px-4 py-2 rounded-lg">
-                                Undo
-                            </button>
-                            <div className="flex space-x-2">
-                                <button onClick={() => updateScoreA(scoreA - 50)} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">
-                                    Salah
-                                </button>
-                                <button onClick={() => updateScoreA(scoreA + 100)} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg">
-                                    Benar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="flex-1">
-                    <div className="block h-[400px] w-[520px] shadow-lg p-8 text-center bg-slate-200 rounded-2xl border-4 border-orange-500">
-                        <div className="text-3xl font-bold text-blue-800 mb-4">Team B</div>
-                        <div className="border-2 h-[230px] bg-white p-4 rounded-lg flex flex-col items-center justify-between">
-                            <div className="text-xl font-bold text-blue-800 mb-2">Score Sementara:</div>
-                            <div className="flex-grow flex items-center justify-center">
-                                <div className="text-7xl font-bold text-blue-800">{scoreB}</div>
-                            </div>
-                        </div>
-                        <div className="flex justify-between mt-4">
-                            <button onClick={undoScoreB} className="bg-gray-400 hover:bg-gray-500 px-4 py-2 rounded-lg">
-                                Undo
-                            </button>
-                            <div className="flex space-x-2">
-                                <button onClick={() => updateScoreB(scoreB - 50)} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">
-                                    Salah
-                                </button>
-                                <button onClick={() => updateScoreB(scoreB + 100)} className="bg-green-600  hover:bg-green-700 px-4 py-2 rounded-lg">
-                                    Benar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </footer>
         </main>
     );
 }
