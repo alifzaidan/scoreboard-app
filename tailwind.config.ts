@@ -12,6 +12,7 @@ const config: Config = {
             },
             backgroundImage: {
                 pattern: "url('../public/assets/img/bg-pattern.png')",
+                'pattern-dark': "url('../public/assets/img/bg-pattern-dark.png')",
             },
         },
         container: {

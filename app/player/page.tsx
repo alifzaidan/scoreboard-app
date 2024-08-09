@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -25,7 +26,7 @@ export default function Player() {
     if (!data) return <div>Loading...</div>;
 
     return (
-        <main className="flex flex-col items-center h-full py-[36px] overflow-hidden bg-white">
+        <main className="flex flex-col items-center h-full py-[36px] overflow-hidden">
             <nav className="w-[1080px] h-[101px] mb-8 rounded-2xl bg-white shadow-lg flex items-center justify-between px-8">
                 <div className="w-28">
                     <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />

@@ -115,7 +115,7 @@ export default function Referee() {
     };
 
     return (
-        <main className="flex flex-col items-center h-screen py-4 overflow-hidden bg-white">
+        <main className="flex flex-col items-center h-screen py-4 overflow-hidden">
             <nav className="w-[1080px] h-[101px] mb-4 rounded-2xl bg-white shadow-lg flex items-center justify-between px-8">
                 <div className="w-28">
                     <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
