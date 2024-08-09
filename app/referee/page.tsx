@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FaUndo } from 'react-icons/fa';
 import useSWR from 'swr';
+import Loading from '../loading';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
@@ -22,7 +22,7 @@ export default function Referee() {
     }, [data]);
 
     if (error) return <div>Failed to load score</div>;
-    if (!data) return <div>Loading...</div>;
+    if (!data) return Loading();
 
     const updateScoreA = async (newScore: any) => {
         setPreviousScoreA(scoreA);
