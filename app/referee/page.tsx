@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -116,13 +117,16 @@ export default function Referee() {
     return (
         <main className="flex flex-col items-center h-screen py-4 overflow-hidden bg-white">
             <nav className="w-[1080px] h-[101px] mb-4 rounded-2xl bg-white shadow-lg flex items-center justify-between px-8">
-                {/* <div className="flex items-center justify-space-x-4"> */}
-                    <img src="/assets/icons/logo-bri.png" alt="Logo" className="h-12 w-32" />
-                    <h1 className="text-3xl font-bold text-blue-800">QUIZ bank BRI</h1>
-                {/* </div> */}
+                <div className="w-28">
+                    <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
+                </div>
+                <h1 className="text-3xl font-bold text-blue-800">QUIZ bank BRI</h1>
             </nav>
             <div className="flex space-x-4 mb-4">
-                <button onClick={resetAll} className="w-[150px] h-[80px] flex justify-center items-center bg-yellow-500 rounded-lg hover:bg-yellow-600">
+                <button
+                    onClick={resetAll}
+                    className="w-[150px] h-[80px] flex justify-center items-center bg-yellow-500 rounded-lg hover:bg-yellow-600"
+                >
                     <span className="text-center font-semibold">Reset</span>
                 </button>
                 <button onClick={startTimer} className="w-[150px] h-[80px] flex justify-center items-center bg-blue-500 rounded-lg hover:bg-blue-600">
@@ -143,10 +147,16 @@ export default function Referee() {
                             </div>
                         </div>
                         <div className="flex justify-between mt-4">
-                            <button onClick={undoScoreA} className="bg-gray-400 hover:bg-gray-500 px-4 py-2 rounded-lg">Undo</button>
+                            <button onClick={undoScoreA} className="bg-gray-400 hover:bg-gray-500 px-4 py-2 rounded-lg">
+                                Undo
+                            </button>
                             <div className="flex space-x-2">
-                                <button onClick={() => updateScoreA(scoreA - 50)} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">Salah</button>
-                                <button onClick={() => updateScoreA(scoreA + 100)} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg">Benar</button>
+                                <button onClick={() => updateScoreA(scoreA - 50)} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">
+                                    Salah
+                                </button>
+                                <button onClick={() => updateScoreA(scoreA + 100)} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg">
+                                    Benar
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -161,10 +171,16 @@ export default function Referee() {
                             </div>
                         </div>
                         <div className="flex justify-between mt-4">
-                            <button onClick={undoScoreB} className="bg-gray-400 hover:bg-gray-500 px-4 py-2 rounded-lg">Undo</button>
+                            <button onClick={undoScoreB} className="bg-gray-400 hover:bg-gray-500 px-4 py-2 rounded-lg">
+                                Undo
+                            </button>
                             <div className="flex space-x-2">
-                                <button onClick={() => updateScoreB(scoreB - 50)} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">Salah</button>
-                                <button onClick={() => updateScoreB(scoreB + 100)} className="bg-green-600  hover:bg-green-700 px-4 py-2 rounded-lg">Benar</button>
+                                <button onClick={() => updateScoreB(scoreB - 50)} className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg">
+                                    Salah
+                                </button>
+                                <button onClick={() => updateScoreB(scoreB + 100)} className="bg-green-600  hover:bg-green-700 px-4 py-2 rounded-lg">
+                                    Benar
+                                </button>
                             </div>
                         </div>
                     </div>
