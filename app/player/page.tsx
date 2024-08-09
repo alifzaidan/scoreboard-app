@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
@@ -9,16 +8,32 @@ const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
 export default function Player() {
     const [timer, setTimer] = useState(0);
+    const [showCountdown, setShowCountdown] = useState(false);
+    const [showWinner, setShowWinner] = useState(false);
     const { data, error } = useSWR('/api/quiz', fetcher, { refreshInterval: 1000 });
 
     useEffect(() => {
         if (data?.timer > 0) {
             setTimer(data.timer);
+            setShowCountdown(true);
             const interval = setInterval(() => {
-                setTimer((prev) => prev - 1);
+                setTimer((prev) => {
+                    if (prev <= 1) {
+                        clearInterval(interval);
+                        setShowCountdown(false);
+                        return 0;
+                    }
+                    return prev - 1;
+                });
             }, 1000);
 
             return () => clearInterval(interval);
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (data?.previousWinner) {
+            setShowWinner(true);
         }
     }, [data]);
 
@@ -58,6 +73,28 @@ export default function Player() {
                     </div>
                 </div>
             </div>
+            {showCountdown && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div className="text-4xl font-bold mb-4">Countdown</div>
+                        <div className="text-6xl font-bold">{timer}</div>
+                        <button className="mt-4 px-4 py-2 bg-blue-800 text-white rounded-lg" onClick={() => setShowCountdown(false)}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
+            {showWinner && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div className="text-4xl font-bold mb-4">Pemenang</div>
+                        <div className="text-6xl font-bold">{data.previousWinner}</div>
+                        <button className="mt-4 px-4 py-2 bg-blue-800 text-white rounded-lg" onClick={() => setShowWinner(false)}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }
