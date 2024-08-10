@@ -99,38 +99,44 @@ export default function Player() {
                     </div>
                 </div>
             </div>
-            {showCountdown && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="sm:w-1/2 w-full h-2/3 rounded-2xl shadow-lg bg-pattern-dark sm:p-8 p-6 mx-8">
-                        <div className="h-full flex flex-col justify-center items-center bg-slate-200 rounded-2xl">
-                            <div className="sm:text-4xl text-3xl text-primary text-center font-bold">Let&apos;s Go!!!</div>
-                            <div className="text-[10rem] text-tertiary text-center font-bold">{timer}</div>
+
+            <div
+                className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-200 ${
+                    showCountdown ? 'opacity-100 visible' : 'opacity-0 invisible'
+                }`}
+            >
+                <div className="sm:w-1/2 w-full h-2/3 rounded-2xl shadow-lg bg-pattern-dark sm:p-8 p-6 mx-8">
+                    <div className="h-full flex flex-col justify-center items-center bg-white rounded-2xl">
+                        <div className="sm:text-4xl text-3xl text-primary text-center font-bold">Let&apos;s Go!!!</div>
+                        <div className="text-[10rem] text-tertiary text-center font-bold">{timer}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-200 ${
+                    showWinner ? 'opacity-100 visible' : 'opacity-0 invisible'
+                }`}
+            >
+                <div className="lg:w-1/2 w-full h-2/3 rounded-2xl shadow-lg bg-pattern-dark sm:p-8 p-6 mx-8">
+                    {data.previousWinner === 'Draw' ? (
+                        <div className="h-full flex flex-col justify-center items-center gap-4 bg-white rounded-2xl p-2">
+                            <div className="sm:text-4xl text-xl text-primary text-center font-bold">Oh noo.. Your score is</div>
+                            <div className="sm:text-9xl text-6xl text-center text-tertiary font-bold">{data.previousWinner}</div>
+                            <div className="sm:text-xl text-primary text-center font-bold">Don&apos;t give up and never surrender!</div>
                         </div>
-                    </div>
-                </div>
-            )}
-            {showWinner && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="lg:w-1/2 w-full h-2/3 rounded-2xl shadow-lg bg-pattern-dark sm:p-8 p-6 mx-8">
-                        {data.previousWinner === 'Draw' ? (
-                            <div className="h-full flex flex-col justify-center items-center gap-4 bg-slate-200 rounded-2xl p-2">
-                                <div className="sm:text-4xl text-xl text-primary text-center font-bold">Oh noo.. Your score is</div>
-                                <div className="sm:text-9xl text-6xl text-center text-tertiary font-bold">{data.previousWinner}</div>
-                                <div className="sm:text-xl text-primary text-center font-bold">Don&apos;t give up and never surrender!</div>
+                    ) : (
+                        <div className="h-full flex flex-col justify-center items-center gap-4 bg-white rounded-2xl p-2">
+                            <div className="flex items-center justify-center gap-4">
+                                <div className="sm:text-4xl text-xl text-center text-primary font-bold">The Winner is,</div>
+                                <Image src="/assets/img/winner.gif" alt="trophy" width={100} height={100} />
                             </div>
-                        ) : (
-                            <div className="h-full flex flex-col justify-center items-center gap-4 bg-slate-200 rounded-2xl p-2">
-                                <div className="flex items-center justify-center gap-4">
-                                    <div className="sm:text-4xl text-xl text-center text-primary font-bold">The Winner is,</div>
-                                    <Image src="/assets/img/winner.gif" alt="trophy" width={100} height={100} />
-                                </div>
-                                <div className="sm:text-9xl text-6xl text-center text-tertiary font-bold">{data.previousWinner}</div>
-                                <div className="sm:text-xl text-center text-primary font-bold">Well done, your victory is well-deserved!</div>
-                            </div>
-                        )}
-                    </div>
+                            <div className="sm:text-9xl text-6xl text-center text-tertiary font-bold">{data.previousWinner}</div>
+                            <div className="sm:text-xl text-center text-primary font-bold">Well done, your victory is well-deserved!</div>
+                        </div>
+                    )}
                 </div>
-            )}
+            </div>
         </main>
     );
 }
