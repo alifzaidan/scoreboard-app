@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FaUndo } from 'react-icons/fa';
 import useSWR from 'swr';
 import Loading from '../loading';
+import Image from 'next/image';
 
 const fetcher = (url: any) => fetch(url).then((res) => res.json());
 
@@ -12,12 +13,14 @@ export default function Referee() {
     const [previousScoreA, setPreviousScoreA] = useState(0);
     const [scoreB, setScoreB] = useState(0);
     const [previousScoreB, setPreviousScoreB] = useState(0);
+    const [winner, setWinner] = useState<string | null>(null);
     const { data, error } = useSWR('/api/quiz', fetcher);
 
     useEffect(() => {
         if (data) {
             setScoreA(data.scoreA);
             setScoreB(data.scoreB);
+            setWinner(data.previousWinner);
         }
     }, [data]);
 
@@ -75,6 +78,7 @@ export default function Referee() {
         setPreviousScoreB(scoreB);
         setScoreA(0);
         setScoreB(0);
+        setWinner(null);
         fetch('/api/quiz', {
             method: 'POST',
             headers: {
@@ -96,6 +100,7 @@ export default function Referee() {
         setPreviousScoreB(scoreB);
         setScoreA(0);
         setScoreB(0);
+        setWinner(winner);
         fetch('/api/quiz', {
             method: 'POST',
             headers: {
@@ -117,12 +122,14 @@ export default function Referee() {
 
     return (
         <main className="flex flex-col space-y-8 container items-center lg:h-screen py-10 overflow-hidden">
-            <nav className="w-full p-4 rounded-2xl bg-slate-200 shadow-lg flex gap-4 items-center justify-center">
-                <div className="bg-quaternary w-1/2 h-full py-4 rounded-full">
-                    <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team A</h2>
+            <nav className="w-full px-8 md:py-2 py-4 rounded-2xl bg-slate-200 shadow-lg flex md:flex-row flex-col gap-4 items-center justify-between">
+                <div className="w-28">
+                    <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
                 </div>
-                <div className="bg-secondary w-full h-full py-4 rounded-full">
-                    <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team B</h2>
+                <h1 className="md:mt-0 mt-2 md:text-3xl text-2xl font-bold text-primary">QUIZ BRI Kanca Sutoyo</h1>
+                <div className="text-center md:block flex items-center gap-1 bg-tertiary rounded-xl py-2 px-4">
+                    <h1 className="md:text-2xl text-lg font-bold text-white">Pemenang: </h1>
+                    <h1 className="md:text-xl text-lg font-bold text-white">{winner ? winner : 'Belum ada'}</h1>
                 </div>
             </nav>
             <div className="grid w-full lg:grid-cols-2 grid-cols-1 gap-8 h-full">

@@ -10,5 +10,5 @@ export default function Layout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return <div className={`${poppins.className} bg-pattern-dark h-screen`}>{children}</div>;
+    return <div className={`${poppins.className} bg-pattern-dark h-full`}>{children}</div>;
 }

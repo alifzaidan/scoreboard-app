@@ -37,7 +37,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="text-lg mx-20 text-white">Halaman ini adalah halaman untuk Juri menambah dan mengurangi score peserta</div>
+                    <div className="text-lg mx-20 text-white">Halaman ini adalah halaman untuk juri menambah dan mengurangi score peserta</div>
                     <div className="absolute bottom-4 right-6 text-white">
                         <FaArrowRightLong className="h-8 w-8" />
                     </div>
