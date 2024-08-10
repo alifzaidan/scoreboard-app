@@ -17,13 +17,6 @@ export async function POST(req: Request) {
     }
     if (body.timer !== undefined) {
         quiz.timer = body.timer;
-        const timerInterval = setInterval(() => {
-            if (quiz.timer > 0) {
-                quiz.timer -= 1;
-            } else {
-                clearInterval(timerInterval);
-            }
-        }, 1000);
     }
     if (body.previousWinner !== undefined) {
         quiz.previousWinner = body.previousWinner;

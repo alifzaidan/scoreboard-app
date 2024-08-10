@@ -23,6 +23,13 @@ export default function Player() {
                     if (prev < 1) {
                         clearInterval(interval);
                         setShowCountdown(false);
+                        fetch('/api/quiz', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ timer: 0 }),
+                        });
                         return 0;
                     }
                     return prev - 1;
@@ -37,6 +44,13 @@ export default function Player() {
             setShowWinner(true);
             const timeout = setTimeout(() => {
                 setShowWinner(false);
+                fetch('/api/quiz', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ previousWinner: null }),
+                });
             }, 10000);
             return () => clearTimeout(timeout);
         }
@@ -46,7 +60,7 @@ export default function Player() {
     if (!data) return Loading();
 
     return (
-        <main className="flex flex-col gap-8 container items-center lg:h-screen py-10 overflow-hidden">
+        <main className="flex flex-col md:gap-8 gap-4 container items-center lg:h-screen py-10 overflow-hidden">
             <nav className="w-full p-4 rounded-2xl bg-slate-200 shadow-lg flex gap-4 items-center justify-center">
                 <div className="bg-quaternary w-1/2 h-full py-4 rounded-full">
                     <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team A</h2>
@@ -55,18 +69,18 @@ export default function Player() {
                     <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team B</h2>
                 </div>
             </nav>
-            <div className="grid w-full lg:grid-cols-2 grid-cols-1 gap-8 h-full">
+            <div className="grid w-full lg:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full">
                 <div className="w-full bg-quaternary shadow-lg sm:p-8 p-4 rounded-2xl">
                     <div className="h-full sm:p-8 p-4 text-center bg-slate-200 rounded-2xl">
                         <div className="flex justify-between items-center border-b border-primary pb-4">
                             <div className="text-start">
-                                <h1 className="text-3xl font-bold text-primary">Team A</h1>
-                                <h4 className="text-lg font-medium text-primary">2 Player</h4>
+                                <h1 className="sm:text-3xl text-2xl font-bold text-primary">Team A</h1>
+                                <h4 className="sm:text-lg font-medium text-primary">2 Player</h4>
                             </div>
                             <RiShieldFlashFill className="text-primary w-10 h-10" />
                         </div>
                         <div className="flex flex-col items-center justify-center h-full pb-16">
-                            <h2 className="text-9xl font-bold text-primary">{data.scoreA}</h2>
+                            <h2 className="sm:text-9xl text-8xl font-bold text-primary">{data.scoreA}</h2>
                         </div>
                     </div>
                 </div>
@@ -74,13 +88,13 @@ export default function Player() {
                     <div className="h-full sm:p-8 p-4 text-center bg-slate-200 rounded-2xl">
                         <div className="flex justify-between items-center border-b border-primary pb-4">
                             <div className="text-start">
-                                <h1 className="text-3xl font-bold text-primary">Team B</h1>
-                                <h4 className="text-lg font-medium text-primary">2 Player</h4>
+                                <h1 className="sm:text-3xl text-2xl font-bold text-primary">Team B</h1>
+                                <h4 className="sm:text-lg font-medium text-primary">2 Player</h4>
                             </div>
                             <RiShieldStarFill className="text-primary w-10 h-10" />
                         </div>
                         <div className="flex flex-col items-center justify-center h-full pb-16">
-                            <h2 className="text-9xl font-bold text-primary">{data.scoreB}</h2>
+                            <h2 className="sm:text-9xl text-8xl font-bold text-primary">{data.scoreB}</h2>
                         </div>
                     </div>
                 </div>

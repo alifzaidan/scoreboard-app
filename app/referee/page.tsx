@@ -121,7 +121,7 @@ export default function Referee() {
     };
 
     return (
-        <main className="flex flex-col space-y-8 container items-center lg:h-screen py-10 overflow-hidden">
+        <main className="flex flex-col md:space-y-8 space-y-4 container items-center lg:h-screen py-10 overflow-hidden">
             <nav className="w-full px-8 md:py-2 py-4 rounded-2xl bg-slate-200 shadow-lg flex md:flex-row flex-col gap-4 items-center justify-between">
                 <div className="w-28">
                     <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
@@ -132,7 +132,7 @@ export default function Referee() {
                     <h1 className="md:text-xl text-lg font-bold text-white">{winner ? winner : 'Belum ada'}</h1>
                 </div>
             </nav>
-            <div className="grid w-full lg:grid-cols-2 grid-cols-1 gap-8 h-full">
+            <div className="grid w-full lg:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full">
                 <div className="w-full bg-quaternary shadow-lg sm:p-8 p-4 rounded-2xl">
                     <div className="h-full sm:p-8 p-4 text-center bg-slate-200 rounded-2xl">
                         <div className="flex justify-between items-center border-b border-primary pb-4">
