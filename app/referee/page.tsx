@@ -126,15 +126,15 @@ export default function Referee() {
                 <div className="w-28">
                     <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
                 </div>
-                <h1 className="md:mt-0 mt-2 md:text-3xl text-2xl font-bold text-primary">QUIZ BRI Kanca Sutoyo</h1>
+                <h1 className="md:mt-0 mt-2 md:text-3xl text-2xl text-center font-bold text-primary">QUIZ BRI Kanca Sutoyo</h1>
                 <div className="text-center md:block flex items-center gap-1 bg-tertiary rounded-xl py-2 px-4">
                     <h1 className="md:text-2xl text-lg font-bold text-white">Pemenang: </h1>
                     <h1 className="md:text-xl text-lg font-bold text-white">{winner ? winner : 'Belum ada'}</h1>
                 </div>
             </nav>
-            <div className="grid w-full lg:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full">
+            <div className="grid w-full lg:grid-cols-2 grid-cols-1 md:gap-8 gap-4 ">
                 <div className="w-full bg-quaternary shadow-lg sm:p-8 p-4 rounded-2xl">
-                    <div className="h-full sm:p-8 p-4 text-center bg-slate-200 rounded-2xl">
+                    <div className="sm:px-8 sm:py-12 p-4 text-center bg-slate-200 rounded-2xl">
                         <div className="flex justify-between items-center border-b border-primary pb-4">
                             <div className="text-start">
                                 <h1 className="text-3xl font-bold text-primary">Team A</h1>
@@ -166,7 +166,7 @@ export default function Referee() {
                 </div>
 
                 <div className="w-full bg-secondary shadow-lg sm:p-8 p-4 rounded-2xl">
-                    <div className="h-full sm:p-8 p-4 text-center bg-slate-200 rounded-2xl">
+                    <div className="sm:px-8 sm:py-12 p-4 text-center bg-slate-200 rounded-2xl">
                         <div className="flex justify-between items-center border-b border-primary pb-4">
                             <div className="text-start">
                                 <h1 className="text-3xl font-bold text-primary">Team B</h1>

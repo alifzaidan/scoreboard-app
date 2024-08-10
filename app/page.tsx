@@ -5,14 +5,14 @@ import { RiUserSettingsLine } from 'react-icons/ri';
 
 export default function Home() {
     return (
-        <main className="flex flex-col container items-center lg:h-screen py-10 overflow-hidden">
+        <main className="flex flex-col container items-center py-10 overflow-hidden">
             <nav className="w-full md:py-8 py-4 md:mb-8 mb-4 rounded-2xl bg-white shadow-lg flex items-center justify-center">
                 <h1 className="md:text-4xl text-2xl font-bold text-primary">Choose Your Role</h1>
             </nav>
-            <div className="grid lg:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full">
+            <div className="grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full">
                 <Link
                     href="/player"
-                    className="flex-1 shadow-lg md:py-20 pt-8 pb-16 text-center bg-gradient-to-br from-secondary to-primary rounded-2xl transform transition-transform duration-300 hover:scale-105"
+                    className="flex-1 shadow-lg md:py-24 pt-8 pb-16 text-center bg-gradient-to-br from-secondary to-primary rounded-2xl transform transition-transform duration-300 lg:hover:scale-105"
                 >
                     <div className="md:text-4xl text-3xl text-white font-bold">Player</div>
 
@@ -27,7 +27,7 @@ export default function Home() {
                 </Link>
                 <Link
                     href="/referee"
-                    className="flex-1 shadow-lg md:py-20 pt-8 pb-16 text-center bg-gradient-to-br from-quaternary to-tertiary rounded-2xl transform transition-transform duration-300 hover:scale-105"
+                    className="flex-1 shadow-lg md:py-24 pt-8 pb-16 text-center bg-gradient-to-br from-quaternary to-tertiary rounded-2xl transform transition-transform duration-300 lg:hover:scale-105"
                 >
                     <div className="md:text-4xl text-3xl text-white font-bold">Referee</div>
 

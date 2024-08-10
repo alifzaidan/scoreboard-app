@@ -12,7 +12,7 @@ export default function Player() {
     const [timer, setTimer] = useState(0);
     const [showCountdown, setShowCountdown] = useState(false);
     const [showWinner, setShowWinner] = useState(false);
-    const { data, error } = useSWR('/api/quiz', fetcher, { refreshInterval: 1000 });
+    const { data, error } = useSWR('/api/quiz', fetcher, { refreshInterval: 100 });
 
     useEffect(() => {
         if (data?.timer > 0) {
