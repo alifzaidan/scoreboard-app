@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 
+
 const config: Config = {
     content: ['./pages/**/*.{js,ts,jsx,tsx,mdx}', './components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
     theme: {
@@ -14,6 +15,19 @@ const config: Config = {
                 pattern: "url('../public/assets/img/bg-pattern.png')",
                 'pattern-dark': "url('../public/assets/img/bg-pattern-dark.png')",
             },
+            transitionProperty: {
+                'opacity': 'opacity',
+                'transform': 'transform',
+            },
+            transitionTimingFunction: {
+                'ease': 'ease',
+            },
+            transitionDuration: {
+                '300': '300ms',
+            },
+            
+            
+
         },
         container: {
             center: true,
@@ -28,4 +42,5 @@ const config: Config = {
     },
     plugins: [],
 };
+
 export default config;

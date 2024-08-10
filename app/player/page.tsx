@@ -12,25 +12,34 @@ export default function Player() {
     const [timer, setTimer] = useState(0);
     const [showCountdown, setShowCountdown] = useState(false);
     const [showWinner, setShowWinner] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const { data, error } = useSWR('/api/quiz', fetcher, { refreshInterval: 1000 });
 
     useEffect(() => {
         if (data?.timer > 0) {
             setTimer(data.timer);
             setShowCountdown(true);
+            setTimeout(() => setModalVisible(true))}
+    }, [data]);
+
+    useEffect(() => {
+        if (showCountdown && timer > 0) {
             const interval = setInterval(() => {
-                setTimer((prev) => {
-                    if (prev < 1) {
-                        clearInterval(interval);
-                        setShowCountdown(false);
-                        return 0;
-                    }
-                    return prev - 1;
-                });
+                setTimer((prev) => prev - 1);
             }, 1000);
+
             return () => clearInterval(interval);
         }
-    }, [data]);
+    }, [showCountdown, timer]);
+
+    useEffect(() => {
+        if (timer === 0 && showCountdown) {
+            setModalVisible(false); 
+            setTimeout(() => {
+                setShowCountdown(false); 
+            }, 300); 
+        }
+    }, [timer, showCountdown]);
 
     useEffect(() => {
         if (data?.previousWinner) {
@@ -86,7 +95,7 @@ export default function Player() {
                 </div>
             </div>
             {showCountdown && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease ${modalVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     <div className="sm:w-1/2 w-full h-2/3 rounded-2xl shadow-lg bg-pattern-dark sm:p-8 p-6 mx-8">
                         <div className="h-full flex flex-col justify-center items-center bg-slate-200 rounded-2xl">
                             <div className="sm:text-4xl text-3xl text-primary font-bold">Let&apos;s Go!!!</div>
@@ -96,7 +105,7 @@ export default function Player() {
                 </div>
             )}
             {showWinner && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out ${showWinner ? 'opacity-100 ' : 'opacity-0 '}`}>
                     <div className="lg:w-1/2 w-full h-2/3 rounded-2xl shadow-lg bg-pattern-dark sm:p-8 p-6 mx-8">
                         {data.previousWinner === 'Draw' ? (
                             <div className="h-full flex flex-col justify-center items-center gap-4 bg-slate-200 rounded-2xl p-2">
@@ -105,7 +114,7 @@ export default function Player() {
                                 <div className="sm:text-xl text-lg text-center text-primary font-bold">Don&apos;t give up and never surrender!</div>
                             </div>
                         ) : (
-                            <div className="h-full flex flex-col justify-center items-center gap-4 bg-slate-200 rounded-2xl p-2">
+                            <div className="h-full flex flex-col justify-center items-center gap-4 bg-white rounded-2xl p-2">
                                 <div className="flex items-center justify-center gap-4">
                                     <div className="sm:text-4xl text-3xl text-primary font-bold">The Winner is,</div>
                                     <Image src="/assets/img/winner.gif" alt="trophy" width={100} height={100} />
