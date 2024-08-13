@@ -61,13 +61,11 @@ export default function Player() {
 
     return (
         <main className="flex flex-col md:gap-8 gap-4 container items-center lg:h-screen py-10 overflow-hidden">
-            <nav className="w-full p-4 rounded-2xl bg-slate-200 shadow-lg flex gap-4 items-center justify-center">
-                <div className="bg-quaternary w-1/2 h-full py-4 rounded-full">
-                    <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team A</h2>
+            <nav className="w-full px-8 md:py-2 py-4 rounded-2xl bg-slate-200 shadow-lg flex md:flex-row flex-col gap-4 items-center justify-between">
+                <div className="w-28">
+                    <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
                 </div>
-                <div className="bg-secondary w-full h-full py-4 rounded-full">
-                    <h2 className="md:text-2xl text-lg text-primary font-bold text-center">Team B</h2>
-                </div>
+                <h1 className="md:mt-0 mt-2 md:text-3xl text-2xl md:py-4 text-center font-bold text-primary">QUIZ BRI Kanca Sutoyo</h1>
             </nav>
             <div className="grid w-full lg:grid-cols-2 grid-cols-1 md:gap-8 gap-4 h-full">
                 <div className="w-full bg-quaternary shadow-lg sm:p-8 p-4 rounded-2xl">
