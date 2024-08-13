@@ -60,7 +60,7 @@ export default function Player() {
     if (!data) return Loading();
 
     return (
-        <main className="flex flex-col md:gap-8 gap-4 container items-center py-10">
+        <main className="flex flex-col md:gap-8 gap-4 container items-center lg:h-screen py-10 overflow-hidden">
             <nav className="w-full px-8 md:py-2 py-4 rounded-2xl bg-slate-200 shadow-lg flex md:flex-row flex-col gap-4 items-center justify-between">
                 <div className="w-28">
                     <Image src="/assets/img/logo-bri.png" alt="Logo" width={200} height={200} />
